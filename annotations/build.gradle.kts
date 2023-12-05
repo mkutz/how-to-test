@@ -14,7 +14,7 @@ dependencies {
   implementation("org.springframework.boot:spring-boot-starter-webflux")
   implementation("org.springframework.boot:spring-boot-starter-validation")
 
-  testFixturesImplementation("org.apache.commons:commons-lang3:3.13.0")
+  testFixturesImplementation("org.apache.commons:commons-lang3:3.14.0")
   testFixturesImplementation("org.apache.commons:commons-rng-simple:1.5")
 }
 
