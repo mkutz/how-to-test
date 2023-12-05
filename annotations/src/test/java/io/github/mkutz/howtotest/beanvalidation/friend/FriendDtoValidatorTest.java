@@ -1,10 +1,10 @@
 package io.github.mkutz.howtotest.beanvalidation.friend;
 
 import static io.github.mkutz.howtotest.beanvalidation.FriendTestDataBuilder.aFriend;
-import static jakarta.validation.Validation.buildDefaultValidatorFactory;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
+import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import java.time.LocalDate;
 import java.util.List;
@@ -15,7 +15,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class FriendDtoValidatorTest {
 
-  static Validator validator = buildDefaultValidatorFactory().getValidator();
+  static Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
   static Stream<FriendDto> validFriendDtos() {
     return Stream.of(

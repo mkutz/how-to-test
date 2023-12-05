@@ -28,7 +28,7 @@ public class FriendController {
       consumes = APPLICATION_JSON_VALUE,
       produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<FriendDto> postFriend(
-      @RequestBody @Valid FriendDto dto, UriComponentsBuilder uriComponentsBuilder) {
+      @Valid @RequestBody FriendDto dto, UriComponentsBuilder uriComponentsBuilder) {
     var friendId = randomUUID();
     var friend =
         new Friend(

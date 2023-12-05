@@ -5,6 +5,7 @@ import static java.util.UUID.randomUUID;
 import io.github.mkutz.howtotest.beanvalidation.friend.Friend;
 import io.github.mkutz.howtotest.beanvalidation.friend.FriendDto;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.rng.simple.RandomSource;
@@ -83,6 +84,11 @@ public class FriendTestDataBuilder {
   }
 
   public String buildJson() {
-    return JSON_FORMAT.formatted(firstName, lastName, email, phoneNumber, birthday);
+    return JSON_FORMAT.formatted(
+        firstName,
+        lastName,
+        email,
+        phoneNumber,
+        birthday.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
   }
 }
