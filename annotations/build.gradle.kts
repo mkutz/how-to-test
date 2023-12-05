@@ -2,7 +2,6 @@ plugins {
   java
   `java-test-fixtures`
   `jvm-test-suite`
-  idea
   id("org.springframework.boot") version "3.1.5"
   id("io.spring.dependency-management") version "1.1.4"
 }
@@ -32,11 +31,7 @@ testing {
     }
     val test by
       getting(JvmTestSuite::class) {
-        dependencies {
-          implementation(project())
-          implementation("org.junit.jupiter:junit-jupiter-params")
-          implementation(testFixtures(project()))
-        }
+        dependencies { implementation("org.junit.jupiter:junit-jupiter-params") }
       }
 
     val integrationTest by
@@ -52,7 +47,5 @@ testing {
       }
   }
 }
-
-idea { module { testSources.from(sourceSets["integrationTest"].java.sourceDirectories) } }
 
 tasks.check { dependsOn(testing.suites.named("integrationTest")) }

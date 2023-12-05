@@ -1,1 +1,1 @@
-include("bean-validation")
+include("annotations")
