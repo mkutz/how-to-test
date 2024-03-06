@@ -1,10 +1,10 @@
-package io.github.mkutz.howtotest.beanvalidation;
+package io.github.mkutz.howtotest.annotations;
 
 import static java.util.UUID.randomUUID;
 
-import io.github.mkutz.howtotest.beanvalidation.friend.Friend;
-import io.github.mkutz.howtotest.beanvalidation.friend.FriendDto;
-import io.github.mkutz.howtotest.beanvalidation.friend.FriendEntity;
+import io.github.mkutz.howtotest.annotations.friend.Friend;
+import io.github.mkutz.howtotest.annotations.friend.FriendDto;
+import io.github.mkutz.howtotest.annotations.friend.FriendEntity;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;

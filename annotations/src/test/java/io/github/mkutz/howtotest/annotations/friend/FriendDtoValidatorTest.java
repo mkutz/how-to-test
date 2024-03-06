@@ -1,6 +1,6 @@
-package io.github.mkutz.howtotest.beanvalidation.friend;
+package io.github.mkutz.howtotest.annotations.friend;
 
-import static io.github.mkutz.howtotest.beanvalidation.FriendTestDataBuilder.aFriend;
+import static io.github.mkutz.howtotest.annotations.FriendTestDataBuilder.aFriend;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 

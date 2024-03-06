@@ -1,4 +1,4 @@
-package io.github.mkutz.howtotest.beanvalidation;
+package io.github.mkutz.howtotest.annotations;
 
 import java.util.Locale;
 import org.springframework.boot.SpringApplication;

@@ -1,4 +1,4 @@
-package io.github.mkutz.howtotest.beanvalidation.friend;
+package io.github.mkutz.howtotest.annotations.friend;
 
 import java.util.Optional;
 import java.util.UUID;

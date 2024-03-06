@@ -1,8 +1,8 @@
-package io.github.mkutz.howtotest.beanvalidation;
+package io.github.mkutz.howtotest.annotations;
 
-import static io.github.mkutz.howtotest.beanvalidation.FriendTestDataBuilder.aFriend;
+import static io.github.mkutz.howtotest.annotations.FriendTestDataBuilder.aFriend;
 
-import io.github.mkutz.howtotest.beanvalidation.friend.FriendRepository;
+import io.github.mkutz.howtotest.annotations.friend.FriendRepository;
 import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
