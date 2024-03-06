@@ -4,6 +4,7 @@ import static java.util.UUID.randomUUID;
 
 import io.github.mkutz.howtotest.beanvalidation.friend.Friend;
 import io.github.mkutz.howtotest.beanvalidation.friend.FriendDto;
+import io.github.mkutz.howtotest.beanvalidation.friend.FriendEntity;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
@@ -81,6 +82,10 @@ public class FriendTestDataBuilder {
 
   public FriendDto buildDto() {
     return new FriendDto(build());
+  }
+
+  public FriendEntity buildEntity() {
+    return build().toEntity();
   }
 
   public String buildJson() {

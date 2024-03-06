@@ -2,12 +2,11 @@
 
 Annotations are not strictly code.
 However, usually they configure the framework to change its behavior quite a lot.
-Hence, omitting annotations can cause sever bugs and so their effects should be covered by unit tests.
+Hence, omitting or misusing annotations can cause sever bugs and so their effects should be covered by unit tests.
 
 One obvious way to test this is to start application and check its behavior directly.
 This is valid and necessary as the framework's behavior is changed by a lot of things beside the annotations (e.g. the classpath, the application.yml/application.properties or other configuration files, configuration classes that may implicitly depend upon each other, …).
-
-E.g.: [FriendApiTest]
+[FriendApiTest] is such an integration test using `@SpringBootTest` to start the application as a whole.
 
 Unfortunately, starting the application usually takes quite some time and testing a lot of different cases on this level is probably not a good idea.
 Therefore, the above tests only test very basic cases: one valid and one invalid.
@@ -17,11 +16,12 @@ As things like validation –e.g. via bean validation annotations–, and JSON p
 
 ## Testing JSON/Jackson Annotations
 
-To check if the annotations and configurations for JSON parsing work, we can simply create a `new ObjectMapper()`.
+To check if the annotations and configurations for JSON parsing work, we can simply create am `ObjectMapper` (or whatever the framework is using under the hood to parse JSON).
+
 Spring does a lot more than this (see [JacksonAutoConfiguration]).
-For example, it "auto-registration for all Module beans with all ObjectMapper beans
-(including the defaulted ones)".
-This means that our `new ObjectMapper()` isn't configured like the one Spring provides and hence our tests won't produce exactly the same results as we will see in the framework.
+For example, it has an "auto-registration for all Module beans with all ObjectMapper beans (including the defaulted ones)".
+This means that `new ObjectMapper()` produces a differently configured version then the one Spring provides and hence our tests won't produce exactly the same results as we will see in the framework.
+
 However, we only want to demonstrate, that the annotations we use do what the should.
 So we can configure our own `ObjectMapper` the way our classes need it and trust in our few integration tests to detect any deviations due to configuration differences.
 

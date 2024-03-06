@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/friends-service
+    username: friends-service
+    password: nR41nb0w5d4nc31ng0
+    driverClassName: org.postgresql.Driver
+  sql:
+    init:
+      mode: always

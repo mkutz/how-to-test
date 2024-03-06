@@ -2,6 +2,9 @@ package io.github.mkutz.howtotest.beanvalidation;
 
 import static io.github.mkutz.howtotest.beanvalidation.FriendTestDataBuilder.aFriend;
 
+import io.github.mkutz.howtotest.beanvalidation.friend.FriendRepository;
+import java.util.UUID;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,16 +13,64 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, classes = LocalTestApplication.class)
 class FriendApiTest {
 
   @Value("http://localhost:${local.server.port}")
   String baseUrl;
 
   @Autowired WebTestClient webClient = WebTestClient.bindToServer().baseUrl(baseUrl).build();
+  @Autowired FriendRepository repository;
+
+  @BeforeEach
+  void clearDatabase() {
+    repository.deleteAll();
+  }
 
   @Test
-  void postFriend() {
+  void getAll() {
+    var friendBuilder = aFriend();
+    repository.save(friendBuilder.buildEntity());
+
+    var actualResponse = webClient.get().uri("/friends/").exchange();
+
+    actualResponse.expectAll(
+        response -> response.expectStatus().isEqualTo(200),
+        response -> response.expectBody().json("[%s]".formatted(friendBuilder.buildJson())));
+  }
+
+  @Test
+  void getAll_empty() {
+    var actualResponse = webClient.get().uri("/friends/").exchange();
+
+    actualResponse.expectAll(
+        response -> response.expectStatus().isEqualTo(200),
+        response -> response.expectBody().json("[]"));
+  }
+
+  @Test
+  void getSingle() {
+    var friendBuilder = aFriend();
+    var friendId = repository.save(friendBuilder.buildEntity()).getId();
+
+    var actualResponse = webClient.get().uri("/friends/" + friendId).exchange();
+
+    actualResponse.expectAll(
+        response -> response.expectStatus().isEqualTo(200),
+        response -> response.expectBody().json(friendBuilder.buildJson()));
+  }
+
+  @Test
+  void getSingle_not_found() {
+    var actualResponse = webClient.get().uri("/friends/" + UUID.randomUUID()).exchange();
+
+    actualResponse.expectAll(
+        response -> response.expectStatus().isEqualTo(404),
+        response -> response.expectBody().isEmpty());
+  }
+
+  @Test
+  void post() {
     var friendJson = aFriend().buildJson();
 
     var actualResponse =
@@ -37,7 +88,7 @@ class FriendApiTest {
   }
 
   @Test
-  void postFriend_invalid_data() {
+  void post_invalid_data() {
     var invalidFriendJson = aFriend().invalid().buildJson();
 
     var actualResponse =

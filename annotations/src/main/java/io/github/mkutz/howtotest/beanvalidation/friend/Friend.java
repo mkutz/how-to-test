@@ -9,4 +9,26 @@ public record Friend(
     String lastName,
     String email,
     String phoneNumber,
-    LocalDate birthday) {}
+    LocalDate birthday) {
+
+  public Friend(FriendEntity entity) {
+    this(
+        entity.getId(),
+        entity.getFirstName(),
+        entity.getLastName(),
+        entity.getEmail(),
+        entity.getPhoneNumber(),
+        entity.getBirthday());
+  }
+
+  public FriendEntity toEntity() {
+    final var entity = new FriendEntity();
+    entity.setId(id);
+    entity.setFirstName(firstName);
+    entity.setLastName(lastName);
+    entity.setEmail(email);
+    entity.setPhoneNumber(phoneNumber);
+    entity.setBirthday(birthday);
+    return entity;
+  }
+}

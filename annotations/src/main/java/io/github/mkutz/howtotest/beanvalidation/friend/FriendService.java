@@ -1,19 +1,28 @@
 package io.github.mkutz.howtotest.beanvalidation.friend;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+import java.util.stream.Stream;
 import org.springframework.stereotype.Service;
 
 @Service
 public class FriendService {
 
-  private final List<Friend> friends = new ArrayList<>();
+  private final FriendRepository repository;
 
-  public List<Friend> getAll() {
-    return friends;
+  public FriendService(FriendRepository repository) {
+    this.repository = repository;
+  }
+
+  public Stream<Friend> getAll() {
+    return repository.findAll().stream().map(Friend::new);
   }
 
   public void add(Friend friend) {
-    friends.add(friend);
+    repository.save(friend.toEntity());
+  }
+
+  public Optional<Friend> findById(UUID id) {
+    return repository.findById(id).map(Friend::new);
   }
 }

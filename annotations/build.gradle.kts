@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 plugins {
   java
   `java-test-fixtures`
@@ -13,6 +15,8 @@ repositories { mavenCentral() }
 dependencies {
   implementation("org.springframework.boot:spring-boot-starter-webflux")
   implementation("org.springframework.boot:spring-boot-starter-validation")
+  implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+  runtimeOnly("org.postgresql:postgresql")
 
   testFixturesImplementation("org.apache.commons:commons-lang3:3.14.0")
   testFixturesImplementation("org.apache.commons:commons-rng-simple:1.5")
@@ -41,6 +45,11 @@ testing {
           implementation(testFixtures(project()))
           implementation("org.springframework.boot:spring-boot-starter-test")
           implementation("org.springframework.boot:spring-boot-starter-webflux")
+          implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+          implementation("org.springframework.boot:spring-boot-testcontainers")
+          implementation(platform("org.testcontainers:testcontainers-bom:1.19.6"))
+          implementation("org.testcontainers:postgresql")
+          implementation("org.testcontainers:junit-jupiter")
           runtimeOnly("io.netty:netty-resolver-dns-native-macos:4.1.101.Final:osx-aarch_64")
         }
         targets { all { testTask.configure { shouldRunAfter(test) } } }
