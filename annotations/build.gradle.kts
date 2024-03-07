@@ -12,6 +12,8 @@ java { sourceCompatibility = JavaVersion.VERSION_21 }
 
 repositories { mavenCentral() }
 
+dependencyManagement { imports { mavenBom("org.testcontainers:testcontainers-bom:1.19.7") } }
+
 dependencies {
   implementation("org.springframework.boot:spring-boot-starter-webflux")
   implementation("org.springframework.boot:spring-boot-starter-validation")
@@ -47,10 +49,9 @@ testing {
           implementation("org.springframework.boot:spring-boot-starter-webflux")
           implementation("org.springframework.boot:spring-boot-starter-data-jpa")
           implementation("org.springframework.boot:spring-boot-testcontainers")
-          implementation(platform("org.testcontainers:testcontainers-bom:1.19.7"))
           implementation("org.testcontainers:postgresql")
           implementation("org.testcontainers:junit-jupiter")
-          runtimeOnly("io.netty:netty-resolver-dns-native-macos:4.1.101.Final:osx-aarch_64")
+          runtimeOnly("io.netty:netty-resolver-dns-native-macos:4.1.107.Final:osx-aarch_64")
         }
         targets { all { testTask.configure { shouldRunAfter(test) } } }
       }
