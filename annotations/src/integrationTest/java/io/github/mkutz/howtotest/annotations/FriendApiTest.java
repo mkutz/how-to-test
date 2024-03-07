@@ -19,7 +19,7 @@ class FriendApiTest {
   @Value("http://localhost:${local.server.port}")
   String baseUrl;
 
-  @Autowired WebTestClient webClient = WebTestClient.bindToServer().baseUrl(baseUrl).build();
+  @Autowired WebTestClient webClient;
   @Autowired FriendRepository repository;
 
   @BeforeEach
