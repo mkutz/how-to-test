@@ -5,12 +5,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.junit.jupiter.api.Test;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 class FriendDtoObjectMapperTest {
 
-  static ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
+  static ObjectMapper objectMapper = Jackson2ObjectMapperBuilder.json().build();
 
   @Test
   void writeAsString() throws JsonProcessingException {
