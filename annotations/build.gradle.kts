@@ -12,7 +12,7 @@ java { sourceCompatibility = JavaVersion.VERSION_21 }
 
 repositories { mavenCentral() }
 
-dependencyManagement { imports { mavenBom("org.testcontainers:testcontainers-bom:1.19.7") } }
+extra["testcontainers.version"] = "1.19.7"
 
 dependencies {
   implementation("org.springframework.boot:spring-boot-starter-webflux")
