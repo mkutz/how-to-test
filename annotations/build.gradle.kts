@@ -21,7 +21,7 @@ dependencies {
   runtimeOnly("org.postgresql:postgresql")
 
   testFixturesImplementation("org.apache.commons:commons-lang3:3.14.0")
-  testFixturesImplementation("org.apache.commons:commons-rng-simple:1.5")
+  testFixturesImplementation("org.apache.commons:commons-rng-simple:1.6")
 }
 
 testing {
