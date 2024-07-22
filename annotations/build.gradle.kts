@@ -20,7 +20,7 @@ dependencies {
   implementation("org.springframework.boot:spring-boot-starter-data-jpa")
   runtimeOnly("org.postgresql:postgresql")
 
-  testFixturesImplementation("org.apache.commons:commons-lang3:3.14.0")
+  testFixturesImplementation("org.apache.commons:commons-lang3:3.15.0")
   testFixturesImplementation("org.apache.commons:commons-rng-simple:1.6")
 }
 
