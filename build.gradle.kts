@@ -1,4 +1,4 @@
-plugins { id("com.diffplug.spotless") version "7.0.1" }
+plugins { id("com.diffplug.spotless") version "7.0.2" }
 
 repositories { mavenCentral() }
 
