@@ -4,7 +4,7 @@ plugins {
   java
   `java-test-fixtures`
   `jvm-test-suite`
-  id("org.springframework.boot") version "4.0.1"
+  id("org.springframework.boot") version "4.0.2"
   id("io.spring.dependency-management") version "1.1.7"
 }
 
